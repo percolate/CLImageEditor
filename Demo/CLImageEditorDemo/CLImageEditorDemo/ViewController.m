@@ -19,7 +19,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    
+    UIView *contentView = [UIView new];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"default.jpg"]];
+    [contentView addSubview:imageView];
+    [_scrollView addSubview:contentView];
+    _imageView = imageView;
+    
     //Set a black theme rather than a white one
 	/*
     [[CLImageEditorTheme theme] setBackgroundColor:[UIColor blackColor]];
@@ -30,9 +36,12 @@
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     */
-
     [[CLImageEditorTheme theme] setToolbarHeight:60];
+}
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
     [self refreshImageView];
 }
 
@@ -98,10 +107,11 @@
         UIActivityViewController *activityView = [[UIActivityViewController alloc] initWithActivityItems:@[_imageView.image] applicationActivities:nil];
         
         activityView.excludedActivityTypes = excludedActivityTypes;
-        activityView.completionHandler = ^(NSString *activityType, BOOL completed){
+        activityView.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
             if(completed && [activityType isEqualToString:UIActivityTypeSaveToCameraRoll]){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Saved successfully" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Saved successfully" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                [self presentViewController:alert animated:YES completion:nil];
             }
         };
         
@@ -138,7 +148,7 @@
 */
 #pragma mark- CLImageEditor delegate
 
-- (void)imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
+- (void)imageEditor:(CLImageEditor *)editor didFinishEditingWithImage:(UIImage *)image
 {
     _imageView.image = image;
     [self refreshImageView];

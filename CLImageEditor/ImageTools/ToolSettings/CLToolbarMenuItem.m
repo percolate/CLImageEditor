@@ -77,6 +77,11 @@
     _iconView.image = iconImage;
 }
 
+- (void)setIconImageContentMode:(UIViewContentMode)iconImageContentMode
+{
+    _iconView.contentMode = iconImageContentMode;
+}
+
 - (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled
 {
     [super setUserInteractionEnabled:userInteractionEnabled];
