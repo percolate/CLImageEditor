@@ -13,7 +13,6 @@
 #pragma mark- _CLImageEditorViewController
 
 static const CGFloat kNavBarHeight = 44.0f;
-static const CGFloat kMenuBarHeight = 80.0f;
 
 @interface _CLImageEditorViewController()
 <CLImageToolProtocol, UINavigationBarDelegate>
@@ -177,7 +176,7 @@ static const CGFloat kMenuBarHeight = 80.0f;
 - (void)initMenuScrollView
 {
     if(self.menuView==nil){
-        UIScrollView *menuScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, kMenuBarHeight)];
+        UIScrollView *menuScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.theme.toolbarHeight)];
         
         // Adjust for iPhone X
         if (@available(iOS 11.0, *)) {
@@ -575,7 +574,7 @@ static const CGFloat kMenuBarHeight = 80.0f;
     
     CGFloat x = 0;
     CGFloat W = 70;
-    CGFloat H = _menuView.height;
+    CGFloat H = _menuView.height - self.view.safeAreaInsets.bottom;
     
     int toolCount = 0;
     CGFloat padding = 0;
