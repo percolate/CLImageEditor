@@ -123,7 +123,12 @@ static const CGFloat kNavBarHeight = 44.0f;
 
         if(self.navigationController){
             [self.navigationController.view addSubview:navigationBar];
-            [_CLImageEditorViewController setConstraintsLeading:@0 trailing:@0 top:nil bottom:nil height:@(kNavBarHeight) width:nil parent:self.navigationController.view child:navigationBar peer:nil];
+            if (@available(iOS 11.0, *)) {
+                [_CLImageEditorViewController setConstraintsLeading:@0 trailing:@0 top:nil bottom:nil height:@(kNavBarHeight) width:nil parent:self.view child:navigationBar peer:nil];
+                [_CLImageEditorViewController setConstraintsLeading:nil trailing:nil top:@0 bottom:nil height:nil width:nil parent:self.view child:navigationBar peer:self.view.safeAreaLayoutGuide];
+            } else {
+                [_CLImageEditorViewController setConstraintsLeading:@0 trailing:@0 top:nil bottom:nil height:@(kNavBarHeight) width:nil parent:self.navigationController.view child:navigationBar peer:nil];
+            }
         }
         else{
             [self.view addSubview:navigationBar];
