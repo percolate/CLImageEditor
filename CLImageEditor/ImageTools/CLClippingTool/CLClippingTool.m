@@ -178,6 +178,7 @@ static NSString* const kCLClippingToolRatioTitleFormat = @"titleFormat";
 - (void)setCropMenu
 {
     CGFloat W = 90;
+    CGFloat H = _menuScroll.height - self.editor.view.safeAreaInsets.bottom;
     CGFloat x = 0;
     
     NSArray *ratios = self.toolInfo.optionalInfo[kCLClippingToolRatios];
@@ -201,7 +202,7 @@ static NSString* const kCLClippingToolRatioTitleFormat = @"titleFormat";
             ratio.isLandscape = (imgSize.width > imgSize.height);
         }
         
-        CLRatioMenuItem *view = [[CLRatioMenuItem alloc] initWithFrame:CGRectMake(x, 0, W, _menuScroll.height) target:self action:@selector(tappedMenu:) toolInfo:nil];
+        CLRatioMenuItem *view = [[CLRatioMenuItem alloc] initWithFrame:CGRectMake(x, 0, W, H) target:self action:@selector(tappedMenu:) toolInfo:nil];
         view.iconImage = iconImage;
         view.ratio = ratio;
         
