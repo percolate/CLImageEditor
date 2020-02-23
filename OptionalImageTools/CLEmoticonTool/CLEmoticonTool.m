@@ -125,7 +125,7 @@ static NSString* const kCLEmoticonToolDeleteIconName = @"deleteIconAssetsName";
 - (void)setEmoticonMenu
 {
     CGFloat W = 70;
-    CGFloat H = _menuScroll.height;
+    CGFloat H = _menuScroll.height - self.editor.view.safeAreaInsets.bottom;
     CGFloat x = 0;
     
     NSString *EmoticonPath = self.toolInfo.optionalInfo[kCLEmoticonToolEmoticonPathKey];
