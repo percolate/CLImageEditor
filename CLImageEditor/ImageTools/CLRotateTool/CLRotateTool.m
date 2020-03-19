@@ -173,7 +173,7 @@ static NSString* const kCLRotateToolCropRotate = @"cropRotateEnabled";
 - (void)setMenu
 {
     CGFloat W = 70;
-    CGFloat H = _menuScroll.height;
+    CGFloat H = _menuScroll.height - self.editor.view.safeAreaInsets.bottom;
 
     NSMutableArray *_menu = @[@{@"title":[CLImageEditorTheme localizedString:@"CLRotateTool_MenuItemRotateTitle" withDefault:@" "],
                                 @"icon":self.toolInfo.optionalInfo[kCLRotateToolRotateImage] ?:
@@ -341,13 +341,13 @@ static NSString* const kCLRotateToolCropRotate = @"cropRotateEnabled";
 
     BOOL cropRotateEnabled = [self.toolInfo.optionalInfo[kCLRotateToolCropRotate] boolValue];
     if (cropRotateEnabled) {
-        result = [self cropAdjustImage:result];
+        result = [self cropAdjustImage:result :image.size];
     }
 
     return result;
 }
 
-- (UIImage *)cropAdjustImage:(UIImage *)image
+- (UIImage *)cropAdjustImage:(UIImage *)image :(CGSize)frame
 {
     CGFloat Wnew = fabs(_initialRect.size.width * cos(_rotationArg)) + fabs(_initialRect.size.height * sin(_rotationArg));
     CGFloat Hnew = fabs(_initialRect.size.width * sin(_rotationArg)) + fabs(_initialRect.size.height * cos(_rotationArg));
@@ -356,7 +356,7 @@ static NSString* const kCLRotateToolCropRotate = @"cropRotateEnabled";
     CGFloat Rh = _initialRect.size.height / Hnew;
     CGFloat scale = MIN(Rw, Rh);
 
-    CGSize originalFrame = self.editor.imageView.image.size;
+    CGSize originalFrame = frame;
     CGFloat finalW = originalFrame.width * scale;
     CGFloat finalH = originalFrame.height * scale;
 

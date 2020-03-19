@@ -124,7 +124,7 @@ static NSString* const kCLStickerToolDeleteIconName = @"deleteIconAssetsName";
 - (void)setStickerMenu
 {
     CGFloat W = 70;
-    CGFloat H = _menuScroll.height;
+    CGFloat H = _menuScroll.height - self.editor.view.safeAreaInsets.bottom;
     CGFloat x = 0;
     
     NSString *stickerPath = self.toolInfo.optionalInfo[kCLStickerToolStickerPathKey];
