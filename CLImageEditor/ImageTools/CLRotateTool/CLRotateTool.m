@@ -172,7 +172,7 @@ static NSString* const kCLRotateToolCropRotate = @"cropRotateEnabled";
 
 - (void)setMenu
 {
-    CGFloat W = 70;
+    CGFloat W = 90;
     CGFloat H = _menuScroll.height - self.editor.view.safeAreaInsets.bottom;
 
     NSMutableArray *_menu = @[@{@"title":[CLImageEditorTheme localizedString:@"CLRotateTool_MenuItemRotateTitle" withDefault:@" "],
