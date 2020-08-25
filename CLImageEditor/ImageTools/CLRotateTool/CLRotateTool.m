@@ -91,7 +91,7 @@ static NSString* const kCLRotateToolCropRotate = @"cropRotateEnabled";
     _gridView = [[CLRotatePanel alloc] initWithSuperview:self.editor.imageView.superview frame:self.editor.imageView.frame];
     _gridView.backgroundColor = [UIColor clearColor];
     _gridView.bgColor = [self.editor.view.backgroundColor colorWithAlphaComponent:0.8];
-    _gridView.gridColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.8];
+    _gridView.gridColor = [UIColor orangeColor];
     _gridView.clipsToBounds = NO;
 
     float sliderMaxima = _fineRotationEnabled ? 0.5 : 1;
@@ -254,7 +254,7 @@ static NSString* const kCLRotateToolCropRotate = @"cropRotateEnabled";
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(10, 0, 260, 30)];
     
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, slider.height)];
-    container.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    container.backgroundColor = [UIColor clearColor];
     container.layer.cornerRadius = slider.height/2;
     
     slider.continuous = YES;

@@ -245,7 +245,7 @@ typedef NS_ENUM(NSUInteger, CLBlurType)
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(10, 0, 260, 30)];
     
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, slider.height)];
-    container.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    container.backgroundColor = [UIColor clearColor];
     container.layer.cornerRadius = slider.height/2;
     
     slider.continuous = NO;
