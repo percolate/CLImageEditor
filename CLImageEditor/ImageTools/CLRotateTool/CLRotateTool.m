@@ -394,6 +394,7 @@ static NSString* const kCLRotateToolCropRotate = @"cropRotateEnabled";
     
     CGRect rct = self.gridRect;
     
+    CGContextSetLineWidth(context, 5);
     CGContextSetStrokeColorWithColor(context, self.gridColor.CGColor);
     CGContextStrokeRect(context, rct);
 }
