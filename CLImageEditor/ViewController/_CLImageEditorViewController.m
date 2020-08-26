@@ -104,10 +104,9 @@ static const CGFloat kNavBarHeight = 44.0f;
         } else {
             NSString *imagePath = [[[CLImageEditorTheme bundle] bundlePath] stringByAppendingString:[NSString stringWithFormat:@"/%@/%@", @"CLNavigation", @"xmark.png"]];
             
-            UIImage *image = [UIImage fastImageWithContentsOfFile:imagePath];
+            UIImage *image = [[UIImage fastImageWithContentsOfFile:imagePath] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             if (image) {
                 navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(pushedCloseBtn:)];
-                navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
             } else {
                 navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(pushedCloseBtn:)];
             }
@@ -772,10 +771,9 @@ static const CGFloat kNavBarHeight = 44.0f;
         } else {
             NSString *imagePath = [[[CLImageEditorTheme bundle] bundlePath] stringByAppendingString:[NSString stringWithFormat:@"/%@/%@", @"CLNavigation", @"xmark.png"]];
             
-            UIImage *image = [UIImage fastImageWithContentsOfFile:imagePath];
+            UIImage *image = [[UIImage fastImageWithContentsOfFile:imagePath] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             if (image) {
                 item.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(pushedCancelBtn:)];
-                item.leftBarButtonItem.tintColor = [UIColor whiteColor];
             } else {
                 item.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:[CLImageEditorTheme localizedString:@"CLImageEditor_BackBtnTitle" withDefault:@"Back"] style:UIBarButtonItemStylePlain target:self action:@selector(pushedCancelBtn:)];
             }
