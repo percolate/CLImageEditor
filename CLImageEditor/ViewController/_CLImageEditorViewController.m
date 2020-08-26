@@ -102,8 +102,7 @@ static const CGFloat kNavBarHeight = 44.0f;
         if (self.theme.navigationCancelButtonText) {
             navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.theme.navigationCancelButtonText style:UIBarButtonItemStylePlain target:self action:@selector(pushedCloseBtn:)];
         } else {
-            NSURL *fileUrl = [[CLImageEditorTheme bundle] URLForResource:@"xmark" withExtension:@"png" subdirectory:@"CLNavigation"];
-            UIImage *image = [[UIImage fastImageWithContentsOfFile:[fileUrl path]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            UIImage *image = [[UIImage imageWithContentsOfFile:[[[CLImageEditorTheme bundle] URLForResource:@"xmark" withExtension:@"png" subdirectory:@"CLNavigation"] path]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
             if (image) {
                 navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(pushedCloseBtn:)];
@@ -769,8 +768,7 @@ static const CGFloat kNavBarHeight = 44.0f;
         if (self.theme.navigationCancelButtonText) {
             item.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:self.theme.navigationBackButtonText style:UIBarButtonItemStylePlain target:self action:@selector(pushedCancelBtn:)];
         } else {
-            NSURL *fileUrl = [[CLImageEditorTheme bundle] URLForResource:@"xmark" withExtension:@"png" subdirectory:@"CLNavigation"];
-            UIImage *image = [[UIImage fastImageWithContentsOfFile:[fileUrl path]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            UIImage *image = [[UIImage imageWithContentsOfFile:[[[CLImageEditorTheme bundle] URLForResource:@"xmark" withExtension:@"png" subdirectory:@"CLNavigation"] path]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
             if (image) {
                 item.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(pushedCancelBtn:)];
