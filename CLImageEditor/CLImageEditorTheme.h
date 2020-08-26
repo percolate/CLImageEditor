@@ -30,6 +30,7 @@
 @property (nonatomic, assign) BOOL statusBarHidden;
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 @property (nonatomic, assign) CGFloat toolbarHeight;
+@property (nonatomic, strong) UIColor *rotateToolGridColor;
 
 + (CLImageEditorTheme*)theme;
 

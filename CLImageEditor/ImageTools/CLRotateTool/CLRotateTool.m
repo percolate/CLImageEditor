@@ -91,7 +91,7 @@ static NSString* const kCLRotateToolCropRotate = @"cropRotateEnabled";
     _gridView = [[CLRotatePanel alloc] initWithSuperview:self.editor.imageView.superview frame:self.editor.imageView.frame];
     _gridView.backgroundColor = [UIColor clearColor];
     _gridView.bgColor = [self.editor.view.backgroundColor colorWithAlphaComponent:0.8];
-    _gridView.gridColor = [UIColor orangeColor];
+    _gridView.gridColor = [[CLImageEditorTheme theme] rotateToolGridColor];
     _gridView.clipsToBounds = NO;
 
     float sliderMaxima = _fineRotationEnabled ? 0.5 : 1;
