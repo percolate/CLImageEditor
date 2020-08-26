@@ -194,7 +194,7 @@ static NSString* const kCLAdjustmentToolContrastImage = @"contrastIconImage";
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(10, 0, 240, 35)];
     
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 260, slider.height)];
-    container.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    container.backgroundColor = [UIColor clearColor];
     container.layer.cornerRadius = slider.height/2;
     
     slider.continuous = YES;
