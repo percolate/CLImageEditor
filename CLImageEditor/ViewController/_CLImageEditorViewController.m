@@ -102,7 +102,15 @@ static const CGFloat kNavBarHeight = 44.0f;
         if (self.theme.navigationCancelButtonText) {
             navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.theme.navigationCancelButtonText style:UIBarButtonItemStylePlain target:self action:@selector(pushedCloseBtn:)];
         } else {
-            navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(pushedCloseBtn:)];
+            NSString *imagePath = [[[CLImageEditorTheme bundle] bundlePath] stringByAppendingString:[NSString stringWithFormat:@"/%@/%@", @"CLNavigation", @"xmark.png"]];
+            
+            UIImage *image = [UIImage fastImageWithContentsOfFile:imagePath];
+            if (image) {
+                navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(pushedCloseBtn:)];
+                navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
+            } else {
+                navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(pushedCloseBtn:)];
+            }
         }
 
         navigationItem.rightBarButtonItem = [self createDoneButton];
@@ -758,9 +766,22 @@ static const CGFloat kNavBarHeight = 44.0f;
         UINavigationItem *item  = [[UINavigationItem alloc] initWithTitle:self.currentTool.toolInfo.title];
         NSString *okButtonTitle = self.theme.navigationApplyButtonText ?: [CLImageEditorTheme localizedString:@"CLImageEditor_OKBtnTitle" withDefault:@"OK"];
         item.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:okButtonTitle style:UIBarButtonItemStyleDone target:self action:@selector(pushedDoneBtn:)];
-        NSString *backButtontTitle = self.theme.navigationBackButtonText ?: [CLImageEditorTheme localizedString:@"CLImageEditor_BackBtnTitle" withDefault:@"Back"];
-        item.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:backButtontTitle style:UIBarButtonItemStylePlain target:self action:@selector(pushedCancelBtn:)];
-
+        
+        if (self.theme.navigationCancelButtonText) {
+            item.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:self.theme.navigationBackButtonText style:UIBarButtonItemStylePlain target:self action:@selector(pushedCancelBtn:)];
+        } else {
+            NSString *imagePath = [[[CLImageEditorTheme bundle] bundlePath] stringByAppendingString:[NSString stringWithFormat:@"/%@/%@", @"CLNavigation", @"xmark.png"]];
+            
+            UIImage *image = [UIImage fastImageWithContentsOfFile:imagePath];
+            if (image) {
+                item.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(pushedCancelBtn:)];
+                item.leftBarButtonItem.tintColor = [UIColor whiteColor];
+            } else {
+                item.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:[CLImageEditorTheme localizedString:@"CLImageEditor_BackBtnTitle" withDefault:@"Back"] style:UIBarButtonItemStylePlain target:self action:@selector(pushedCancelBtn:)];
+            }
+        }
+        
+        
         if (self.theme.navigationButtonsFont) {
             [item.leftBarButtonItem setTitleTextAttributes:@{NSFontAttributeName : self.theme.navigationButtonsFont}
                                                                     forState:UIControlStateNormal];
