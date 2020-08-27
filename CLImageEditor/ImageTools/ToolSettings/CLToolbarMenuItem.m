@@ -23,14 +23,14 @@
         CGFloat H = frame.size.height;
         CGFloat vPad = 5;
 
-        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, vPad * 2, W-20, H - (15 + vPad * 4))];
+        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, vPad * 2, W-20, H - (16 + vPad * 4))];
         _iconView.clipsToBounds = YES;
         _iconView.layer.cornerRadius = 5;
         _iconView.contentMode = UIViewContentModeScaleAspectFit;
         _iconView.tintColor = [CLImageEditorTheme toolbarTextColor];
         [self addSubview:_iconView];
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _iconView.bottom + vPad, W, 15)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _iconView.bottom + vPad, W, 16)];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = [CLImageEditorTheme toolbarTextColor];
         _titleLabel.font = [CLImageEditorTheme toolbarTextFont];
